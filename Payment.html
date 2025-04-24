@@ -21,6 +21,12 @@
   <script>
     document.getElementById("paymentForm").addEventListener("submit", function (e) {
       e.preventDefault();
+ const cardNumber = document.querySelector('input[name="cardNumber"]').value; 
+
+      if (cardNumber.length !== 16 || isNaN(cardNumber)) { 
+        alert("Please enter a valid 16-digit card number."); 
+        return; 
+      }                  <!--Card Number Length Validation-->
       alert("Payment Successful!");
       window.location.href = "success.html";
     });
