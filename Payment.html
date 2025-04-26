@@ -23,7 +23,8 @@
       e.preventDefault();
  const cardNumber = document.querySelector('input[name="cardNumber"]').value; 
 
-      if (cardNumber.length !== 16 || isNaN(cardNumber)) { 
+      if (cardNumber.replace(/\s/g,'').length !== 16 || isNaN(cardNumber.replace(/\s/g,''))) {
+  // (New change: removing spaces while checking) <-- ADDED CHANGE 
         alert("Please enter a valid 16-digit card number."); 
         return; 
       }                  <!--Card Number Length Validation-->
