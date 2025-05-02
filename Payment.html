@@ -20,7 +20,7 @@
 
   <script>
     function validateCardNumber(cardNumber) {
-      return cardNumber.replace(/\s/g, '').length === 16 && !isNaN(cardNumber.replace(/\s/g, ''));
+      return cardNumber.replace(/\s/g, '').length === 16 && !isNaN(cardNumber.replace(/\s/g, ''));// Remove spaces and check if length is 16 and if it's numeric
 }
     document.getElementById("paymentForm").addEventListener("submit", function (e) {
       e.preventDefault();
