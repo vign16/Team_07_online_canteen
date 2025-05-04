@@ -10,6 +10,7 @@
   <div class="payment-container">
     <h1>Payment</h1>
     <form id="paymentForm">
+              <!-- Added 'pattern' attribute to enforce 16-digit numeric input -->
       <input type="text" name="cardNumber" placeholder="Card Number" required pattern="\d{16}" />  <!-- ADDED pattern for card number -->
       <input type="text" name="cardName" placeholder="Name on Card" required />  <!-- ADDED name -->
       <input type="text" name="expiryDate" placeholder="Expiry Date (MM/YY)" required />  <!-- ADDED name -->
