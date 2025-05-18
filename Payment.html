@@ -85,6 +85,13 @@ body {
         alert("Please enter a valid 16-digit card number."); 
         return; 
       }                  <!--Card Number Length Validation-->
+   
+ // Check expiry date format
+      if (!isValidExpiryDate(expiryDate)) {
+        alert("Please enter expiry date in MM/YY format.");
+        return;
+      }
+
       alert("Payment Successful!");
       window.location.href = "success.html";
     });
