@@ -92,6 +92,12 @@ body {
         return;
       }
 
+      //  Validate CVV as 3 digits
+      if (!/^\d{3}$/.test(cvv)) {
+        alert("Please enter a valid 3-digit CVV.");
+        return;
+      }
+
       alert("Payment Successful!");
       window.location.href = "success.html";
     });
