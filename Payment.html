@@ -4,32 +4,123 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Payment | Simple Canteen</title>
-  <link rel="stylesheet" href="payment.css" />
+<style>
+body {// Cascading style sheet
+     font-family: Arial, sans-serif;
+    background-image: url('https://cdn.pixabay.com/photo/2017/12/27/14/58/phonepe-3043116_960_720.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(2px); 
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+//payment container tag
+
+  .payment-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: 320px;
+    text-align: center;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    margin-top: 16px;
+    padding: 15px;
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #218838;
+  }
+ /* NEW CODE: Mobile responsive improvements */
+    @media (max-width: 400px) {
+      .payment-container {
+        width: 90%;
+        padding: 1.5rem;
+      }
+
+      input, button {
+        font-size: 1rem;
+      }
+}
+/* added new one */
+  .payment-container h2 {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .success-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 1rem;
+    display: none;
+  }
+//HTML CODE IS WRITTEN DOWN
+
+
+</style>
 </head>
 <body>
   <div class="payment-container">
     <h1>Payment</h1>
     <form id="paymentForm">
-      <input type="text" name="cardNumber" placeholder="Card Number" required />  <!-- ADDED name -->
+              <!-- Added 'pattern' attribute to enforce 16-digit numeric input -->
+      <input type="text" name="cardNumber" placeholder="Card Number" required pattern="\d{16}" />  <!-- ADDED pattern for card number -->
       <input type="text" name="cardName" placeholder="Name on Card" required />  <!-- ADDED name -->
       <input type="text" name="expiryDate" placeholder="Expiry Date (MM/YY)" required />  <!-- ADDED name -->
       <input type="text" name="cvv" placeholder="CVV" required />  <!-- ADDED name -->
-      <button type="submit">Pay</button>
+      <button type="submit">Pay</button> <!--Button to Submit the payment form -->
     </form>
   </div>
 
   <script>
+    function validateCardNumber(cardNumber) {
+      return cardNumber.replace(/\s/g, '').length === 16 && !isNaN(cardNumber.replace(/\s/g, ''));// Remove spaces and check if length is 16 and if it's numeric
+}
     document.getElementById("paymentForm").addEventListener("submit", function (e) {
       e.preventDefault();
  const cardNumber = document.querySelector('input[name="cardNumber"]').value; 
 
-      if (cardNumber.length !== 16 || isNaN(cardNumber)) { 
+      if (cardNumber.replace(/\s/g,'').length !== 16 || isNaN(cardNumber.replace(/\s/g,''))) {
+  // (New change: removing spaces while checking) <-- ADDED CHANGE 
         alert("Please enter a valid 16-digit card number."); 
         return; 
       }                  <!--Card Number Length Validation-->
-      alert("Payment Successfull");
-      window.location.href = "success.html";
-    });
+   
+ // Check expiry date format
+      if (!isValidExpiryDate(expiryDate)) {
+        alert("Please enter expiry date in MM/YY format.");
+        return;
+      }
+
+      //  Validate CVV as 3 digits
+      if (!/^\d{3}$/.test(cvv)) {
+        alert("Please enter a valid 3-digit CVV.");
+        return;
+      }
+
+      alert("Payment Successful!");//after payment 
+      window.location.href = "success.html";//sucess page 
+    });      // changes done
   </script>
 </body>
 </html>
